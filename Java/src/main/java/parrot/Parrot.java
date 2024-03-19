@@ -1,30 +1,30 @@
 package parrot;
 
-public class Parrot {
+public interface Parrot {
 
-    private final ParrotTypeEnum type;
+    /* private final ParrotTypeEnum type; */
     private final int numberOfCoconuts;
     private final double voltage;
     private final boolean isNailed;
 
-    public Parrot(ParrotTypeEnum type, int numberOfCoconuts, double voltage, boolean isNailed) {
-        this.type = type;
+    public Parrot(/* ParrotTypeEnum type, */ int numberOfCoconuts, double voltage, boolean isNailed) {
+       /*  this.type = type; */
         this.numberOfCoconuts = numberOfCoconuts;
         this.voltage = voltage;
         this.isNailed = isNailed;
     }
 
     public double getSpeed() {
-        return switch (type) {
-            case EUROPEAN -> getBaseSpeed();
-            case AFRICAN -> Math.max(0, getBaseSpeed() - getLoadFactor() * numberOfCoconuts);
-            case NORWEGIAN_BLUE -> (isNailed) ? 0 : getBaseSpeed(voltage);
+      /*   return switch (type) { */
+          /*   case EUROPEAN -> /* getBaseSpeed(); */ 
+          /*   case AFRICAN -> Math.max(0, getBaseSpeed() - getLoadFactor() * numberOfCoconuts); */
+           /*  case NORWEGIAN_BLUE -> (isNailed) ? 0 : getBaseSpeed(voltage); */
         };
-    }
+    /* } */
 
     private double getBaseSpeed(double voltage) {
         return Math.min(24.0, voltage * getBaseSpeed());
-    }
+    }/*  */
 
     private double getLoadFactor() {
         return 9.0;
@@ -35,10 +35,46 @@ public class Parrot {
     }
 
     public String getCry() {
-        return switch (type) {
-            case EUROPEAN -> "Sqoork!";
-            case AFRICAN -> "Sqaark!";
-            case NORWEGIAN_BLUE -> voltage > 0 ? "Bzzzzzz" : "...";
-        };
+       /*  return switch (type) { */
+           /*  case EUROPEAN -> "Sqoork!"; */
+          /*   case AFRICAN -> "Sqaark!"; */
+          /*   case NORWEGIAN_BLUE -> voltage > 0 ? "Bzzzzzz" : "..."; */
+        }
+    /* } */
+}
+
+public class EUROPEAN implements Parrot {
+    @Override
+    public double getSpeed() {
+        return getBaseSpeed();
+    }
+
+    @Override
+    public String getCry() {
+        return "Sqoork!";
+    }
+}
+
+public class AFRICAN implements Parrot {
+    @Override
+    public double getSpeed() {
+        return Math.max(0, getBaseSpeed() - getLoadFactor() * numberOfCoconuts);
+    }
+
+    @Override
+    public String getCry() {
+        return "Sqaark!";
+    }
+}
+
+public class NORWEGIAN_BLUE implements Parrot {
+    @Override
+    public double getSpeed() {
+        return (isNailed) ? 0 : getBaseSpeed(voltage);
+    }
+
+    @Override
+    public String getCry() {
+        return voltage > 0 ? "Bzzzzzz" : "...";
     }
 }
