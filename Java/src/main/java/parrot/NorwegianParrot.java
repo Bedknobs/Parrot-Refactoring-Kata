@@ -2,8 +2,12 @@ package parrot;
 
 public class NorwegianParrot implements Parrot {
 
+    private double getBaseSpeed() {
+        return 12.0;
+    };
+    
     private double NORWEGIAN_BASE_SPEED(double voltage) {
-        return voltage;
+        return Math.min(24.0, voltage * getBaseSpeed());
     };
 
     private final double voltage;
