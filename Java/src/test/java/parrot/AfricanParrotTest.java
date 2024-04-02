@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AfricanParrotTest {
 
-    Parrot africanParrot = new AfricanParrot();
+    Parrot africanParrot = new AfricanParrot(1);
 
     @Test
     @DisplayName("la velocidad de un loro africano es la velocidad base menos el peso por los cocos que lleve")
